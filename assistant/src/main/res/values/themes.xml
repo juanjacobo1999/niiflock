@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.Asistente" parent="android:Theme.Material.Light.NoActionBar" />
+
+    <!-- Fondo transparente y sin animación para la actividad de voz. -->
+    <style name="Theme.Asistente.Voice" parent="android:Theme.Translucent.NoTitleBar">
+        <item name="android:windowAnimationStyle">@null</item>
+    </style>
+</resources>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Asistente</string>
+    <string name="service_description">Asistente usa este servicio para mostrar el botón flotante y, solo mientras ejecuta una orden tuya, leer la pantalla, tocar y escribir por ti. Lo que ve en pantalla se envía a la API de Anthropic para decidir el siguiente paso. No actúa en apps de bancos, pagos ni contraseñas.</string>
+</resources>

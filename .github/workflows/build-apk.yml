@@ -1,7 +1,8 @@
 name: Build APK
 
-# Compila el APK en la nube de GitHub (no hace falta Android Studio).
+# Compila los APK en la nube de GitHub (no hace falta Android Studio).
 # Se ejecuta con cada push a main/master, o a mano desde la pestaña Actions.
+# Dos apps: NiifLock (módulo :app) y Asistente (módulo :assistant).
 
 on:
   workflow_dispatch:
@@ -26,18 +27,27 @@ jobs:
         with:
           gradle-version: 8.9
 
-      - name: Compilar APK de depuracion
-        run: gradle :app:assembleDebug --no-daemon --stacktrace
+      # --continue: si un módulo falla, igual se compila el otro y se ven todos los errores de una vez.
+      - name: Compilar los APK de depuracion
+        run: gradle :app:assembleDebug :assistant:assembleDebug --continue --no-daemon --stacktrace
+
+      - name: Renombrar los APK
+        run: |
+          mkdir -p dist
+          cp app/build/outputs/apk/debug/app-debug.apk dist/NiifLock.apk
+          cp assistant/build/outputs/apk/debug/assistant-debug.apk dist/Asistente.apk
 
       - uses: actions/upload-artifact@v4
         with:
-          name: NiifLock-apk
-          path: app/build/outputs/apk/debug/app-debug.apk
+          name: APKs
+          path: dist/*.apk
 
-      # Publica el APK como "release" para tener un enlace directo de descarga desde el celular.
-      - name: Publicar release con el APK
+      # Publica los APK como "release" para tener un enlace directo de descarga desde el celular.
+      - name: Publicar release con los APK
         uses: softprops/action-gh-release@v2
         with:
           tag_name: build-${{ github.run_number }}
-          name: NiifLock build ${{ github.run_number }}
-          files: app/build/outputs/apk/debug/app-debug.apk
+          name: Build ${{ github.run_number }} (NiifLock + Asistente)
+          files: |
+            dist/NiifLock.apk
+            dist/Asistente.apk

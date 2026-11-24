@@ -22,3 +22,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "NiifLock"
 include(":app")
+include(":assistant")
