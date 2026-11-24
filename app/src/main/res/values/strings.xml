@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">NiifLock</string>
+    <string name="accessibility_description">NiifLock detecta qué app abres para pedirte una pregunta de NIC/NIIF antes de dejarte usar las apps que elegiste. No lee el contenido de tu pantalla ni envía datos a ningún sitio.</string>
+</resources>
